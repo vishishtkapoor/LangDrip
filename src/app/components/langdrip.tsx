@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { Octokit } from '@octokit/rest'
 import Image from 'next/image'
+import Footer from './footer'
 
 const octokit = new Octokit()
 
@@ -72,13 +73,15 @@ export default function LangDrip() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
                             <div className="flex items-center mb-6">
-                                <Image
+                                <a href="https://github.com/${userData.name}">
+                                <img
                                     src={userData.avatar_url}
                                     alt={`${userData.name}'s avatar`}
                                     width={64}
                                     height={64}
                                     className="rounded-full mr-4"
                                 />
+                                </a>
                                 <div>
                                     <h2 className="text-2xl font-bold">{userData.name}</h2>
                                     <p className="text-cyan-500">@{userData.login}</p>
@@ -124,6 +127,7 @@ export default function LangDrip() {
                         </div>
                     </div>
                 )}
+                <Footer />
             </div>
         </div>
     )
