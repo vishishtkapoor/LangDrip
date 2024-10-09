@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { Octokit } from '@octokit/rest'
+import Image from 'next/image'
 
 const octokit = new Octokit()
 
@@ -71,10 +72,12 @@ export default function LangDrip() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
                             <div className="flex items-center mb-6">
-                                <img
+                                <Image
                                     src={userData.avatar_url}
                                     alt={`${userData.name}'s avatar`}
-                                    className="w-16 h-16 rounded-full mr-4"
+                                    width={64}
+                                    height={64}
+                                    className="rounded-full mr-4"
                                 />
                                 <div>
                                     <h2 className="text-2xl font-bold">{userData.name}</h2>
@@ -83,7 +86,7 @@ export default function LangDrip() {
                             </div>
                             <h3 className="text-xl font-bold mb-4">Top Languages</h3>
                             <div className="space-y-2">
-                                {userData.languages.map(([lang, count], index) => (
+                                {userData.languages.map(([lang, count]) => (
                                     <div key={lang} className="flex items-center">
                                         <div className="w-32 truncate">{lang}</div>
                                         <div className="flex-1 h-4 bg-gray-700 rounded-full overflow-hidden">
@@ -104,7 +107,7 @@ export default function LangDrip() {
                                 <text x="100" y="100" textAnchor="middle" dominantBaseline="middle" fill="#0ff" fontSize="12">
                                     {userData.languages[0][0]}
                                 </text>
-                                {userData.languages.slice(0, 5).map(([lang, count], index) => {
+                                {userData.languages.slice(0, 5).map(([lang], index) => {
                                     const angle = (index / 5) * Math.PI * 2 - Math.PI / 2
                                     const x = 100 + Math.cos(angle) * 60
                                     const y = 100 + Math.sin(angle) * 60
